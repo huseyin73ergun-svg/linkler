@@ -3,129 +3,596 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sosyal Medya & Portfolyo</title>
+  <title>Hüseyin Ergün | Sosyal Medya & Portfolyo</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .glass { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .link-card { transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+    .link-card:hover { transform: translateY(-3px) scale(1.01); }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4">
+<body id="app-body" class="min-h-screen transition-colors duration-500 flex flex-col items-center justify-center p-4 sm:p-6 bg-slate-950 text-slate-100">
 
-  <!-- Ana Kart -->
-  <div class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 text-center shadow-2xl">
-    
-    <div class="space-y-3">
-      <div class="w-24 h-24 mx-auto rounded-full ring-4 ring-purple-500/30 overflow-hidden shadow-lg bg-gradient-to-tr from-purple-600 to-indigo-500 flex items-center justify-center text-3xl font-bold">
-        🎨
-      </div>
-      <div>
-        <h1 id="view-name" class="text-xl font-bold">Hüseyin Ergün</h1>
-        <p id="view-title" class="text-sm text-purple-400 font-medium">Görsel Sanatlar & Portfolyo</p>
-      </div>
-      <p id="view-bio" class="text-xs text-slate-400 max-w-xs mx-auto">
-        Karakalem çalışmaları, yağlı boya tablolar ve güncel projelerim.
-      </p>
-    </div>
+  <!-- Üst Kontrol Çubuğu -->
+  <div class="w-full max-w-lg flex items-center justify-between mb-4 px-1">
+    <button onclick="openQR()" class="glass px-3.5 py-2 rounded-full text-xs font-semibold flex items-center gap-2 border border-white/15 bg-white/5 hover:bg-white/15 transition shadow-lg">
+      <i class="fa-solid fa-qrcode text-purple-400"></i>
+      <span>QR Kod</span>
+    </button>
 
-    <!-- Linkler -->
-    <div class="space-y-3 text-left">
-      <a id="link-instagram" href="https://instagram.com/art.huner" target="_blank" rel="noopener noreferrer"
-         class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">
-        <div class="flex items-center gap-3">
-          <i class="fa-brands fa-instagram text-xl text-pink-400"></i>
-          <span class="text-sm font-semibold">Instagram</span>
-        </div>
-        <span id="label-instagram" class="text-xs text-slate-400">@art.huner &rarr;</span>
-      </a>
-
-      <a id="link-whatsapp" href="https://wa.me/905000000000" target="_blank" rel="noopener noreferrer"
-         class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">
-        <div class="flex items-center gap-3">
-          <i class="fa-brands fa-whatsapp text-xl text-emerald-400"></i>
-          <span class="text-sm font-semibold">WhatsApp</span>
-        </div>
-        <span class="text-xs text-slate-400">Mesaj Gönder &rarr;</span>
-      </a>
-
-      <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"
-         class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">
-        <div class="flex items-center gap-3">
-          <i class="fa-brands fa-tiktok text-xl text-cyan-400"></i>
-          <span class="text-sm font-semibold">TikTok</span>
-        </div>
-        <span class="text-xs text-slate-400">Videolar &rarr;</span>
-      </a>
-
-      <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
-         class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">
-        <div class="flex items-center gap-3">
-          <i class="fa-brands fa-youtube text-xl text-red-500"></i>
-          <span class="text-sm font-semibold">YouTube</span>
-        </div>
-        <span class="text-xs text-slate-400">Kanal &rarr;</span>
-      </a>
-    </div>
-
-    <div class="pt-2 text-xs text-slate-500 text-center">
-      © 2026 Tüm Hakları Saklıdır.
+    <div class="flex items-center gap-2">
+      <button onclick="sharePage()" class="glass w-9 h-9 rounded-full flex items-center justify-center border border-white/15 bg-white/5 hover:bg-white/15 transition shadow-lg" title="Paylaş">
+        <i class="fa-solid fa-share-nodes text-xs"></i>
+      </button>
+      <button onclick="openStudio()" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2 shadow-lg shadow-purple-600/30 transition">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <span>Tasarımı & Hesapları Yönet</span>
+      </button>
     </div>
   </div>
 
-  <!-- Sağ Alttaki Düzenleme Butonu -->
-  <button onclick="document.getElementById('editModal').classList.toggle('hidden')" 
-          class="fixed bottom-4 right-4 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-3 py-2 rounded-full shadow-lg border border-purple-400/30 flex items-center gap-1.5 transition">
-    <i class="fa-solid fa-pen"></i> Ekrandan Düzenle
-  </button>
-
-  <!-- Düzenleme Penceresi (Modal) -->
-  <div id="editModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-    <div class="bg-slate-900 border border-slate-700 w-full max-w-sm rounded-2xl p-5 space-y-4 shadow-2xl text-left">
-      <div class="flex justify-between items-center pb-2 border-b border-slate-800">
-        <h3 class="font-bold text-sm text-purple-300">Sayfa Bilgilerini Güncelle</h3>
-        <button onclick="document.getElementById('editModal').classList.add('hidden')" class="text-slate-400 hover:text-white">&times;</button>
+  <!-- Ana Kart -->
+  <main id="main-card" class="w-full max-w-lg rounded-[2rem] p-6 sm:p-8 shadow-2xl border border-slate-800 bg-slate-900/90 glass relative overflow-hidden space-y-6">
+    
+    <!-- Profil Başlığı -->
+    <div class="text-center space-y-3 relative z-10">
+      <div class="relative w-28 h-28 mx-auto">
+        <div class="w-full h-full rounded-full p-1 bg-gradient-to-tr from-purple-500 via-pink-500 to-amber-500 shadow-xl">
+          <img id="ui-avatar" src="" alt="Profil" class="w-full h-full object-cover rounded-full bg-slate-900 hidden">
+          <div id="ui-avatar-Placeholder" class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-4xl font-bold">🎨</div>
+        </div>
+        <button onclick="openStudio()" title="Fotoğraf Değiştir" class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-purple-600 hover:bg-purple-500 text-white flex items-center justify-center shadow-lg border-2 border-slate-900 text-xs">
+          <i class="fa-solid fa-camera"></i>
+        </button>
       </div>
 
-      <div class="space-y-3 text-xs">
-        <div>
-          <label class="block text-slate-400 mb-1">Ad Soyad</label>
-          <input id="input-name" type="text" value="Hüseyin Ergün" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white">
+      <div>
+        <div class="flex items-center justify-center gap-1.5">
+          <h1 id="ui-name" class="text-2xl font-extrabold tracking-tight">Hüseyin Ergün</h1>
+          <i class="fa-solid fa-circle-check text-blue-400 text-sm" title="Doğrulanmış Profil"></i>
         </div>
-
-        <div>
-          <label class="block text-slate-400 mb-1">WhatsApp Numarası (Başında 90 ile)</label>
-          <input id="input-phone" type="text" placeholder="905321234567" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white">
-        </div>
-
-        <div>
-          <label class="block text-slate-400 mb-1">Instagram Kullanıcı Adı</label>
-          <input id="input-insta" type="text" value="art.huner" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white">
-        </div>
+        <p id="ui-title" class="text-sm text-purple-400 font-semibold mt-0.5">Görsel Sanatlar & Portfolyo</p>
+        <p id="ui-location" class="text-xs opacity-60 flex items-center justify-center gap-1 mt-1">
+          <i class="fa-solid fa-location-dot text-pink-400"></i> <span>Cizre, Türkiye</span>
+        </p>
       </div>
 
-      <div class="pt-2 flex gap-2">
-        <button onclick="saveAndExport()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 rounded-lg text-xs transition">
-          Güncelle & Kodu Al
+      <p id="ui-bio" class="text-xs sm:text-sm opacity-80 max-w-md mx-auto leading-relaxed">
+        Karakalem portreler, yağlı boya çalışmaları ve dijital sanat projelerim. Özel sipariş ve iş birlikleri için aşağıdaki kanallardan ulaşabilirsiniz.
+      </p>
+    </div>
+
+    <!-- Kategori Filtre Sekmeleri -->
+    <div class="flex items-center justify-center gap-1.5 overflow-x-auto pb-1 text-xs font-semibold">
+      <button onclick="filterLinks('all')" id="tab-all" class="px-3.5 py-1.5 rounded-full bg-purple-600 text-white transition">Tümü</button>
+      <button onclick="filterLinks('social')" id="tab-social" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 transition">Sosyal Medya</button>
+      <button onclick="filterLinks('portfolio')" id="tab-portfolio" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 transition">Sanat & Portfolyo</button>
+      <button onclick="filterLinks('contact')" id="tab-contact" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 transition">İletişim</button>
+    </div>
+
+    <!-- Öne Çıkan Eser / Duyuru Kartı -->
+    <div id="ui-featured-box" class="rounded-2xl overflow-hidden border border-white/10 bg-white/5 p-3.5 flex items-center gap-4">
+      <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-2xl shrink-0 overflow-hidden">
+        <img id="ui-feat-img" src="" class="w-full h-full object-cover hidden">
+        <span id="ui-feat-icon">🖼️</span>
+      </div>
+      <div class="flex-1 min-w-0 text-left">
+        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">Öne Çıkan</span>
+        <h3 id="ui-feat-title" class="text-sm font-bold truncate mt-1">Özel Karakalem & Tablo Siparişi</h3>
+        <p id="ui-feat-desc" class="text-xs opacity-70 truncate">Portre çizimi ve eser bilgisi için tıklayın</p>
+      </div>
+      <a id="ui-feat-url" href="https://instagram.com/art.huner" target="_blank" class="px-3 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold shrink-0 transition">
+        İncele &rarr;
+      </a>
+    </div>
+
+    <!-- Dinamik Sosyal Medya Linkleri Listesi -->
+    <div id="links-container" class="space-y-3"></div>
+
+    <!-- Alt Bilgi -->
+    <footer class="pt-2 border-t border-white/10 text-center text-xs opacity-50 flex items-center justify-between">
+      <span>© 2026 <span id="ui-footer-name">Hüseyin Ergün</span></span>
+      <button onclick="openStudio()" class="hover:underline text-purple-400">Yönetici Paneli</button>
+    </footer>
+  </main>
+
+  <!-- ================= PROFESYONEL STÜDYO (YÖNETİM MODALI) ================= -->
+  <div id="studio-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-slate-900 border border-slate-700 text-slate-100 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+      
+      <!-- Modal Üst Bar -->
+      <div class="px-6 py-4 bg-slate-800/70 border-b border-slate-700 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid fa-sliders text-purple-400"></i>
+          <h2 class="font-bold text-base">Profesyonel Yönetim Stüdyosu</h2>
+        </div>
+        <button onclick="closeStudio()" class="w-8 h-8 rounded-full bg-slate-700 hover:bg-slate-600 flex items-center justify-center text-lg">&times;</button>
+      </div>
+
+      <!-- Modal İçeriği -->
+      <div class="p-6 overflow-y-auto space-y-8 text-xs sm:text-sm">
+
+        <!-- 1. BÖLÜM: PROFİL & FOTOĞRAF -->
+        <section class="space-y-4">
+          <h3 class="font-bold text-purple-400 uppercase tracking-wider text-xs border-b border-slate-800 pb-2">1. Profil Bilgileri & Fotoğraf</h3>
+          
+          <div class="flex flex-col sm:flex-row items-center gap-4 bg-slate-800/40 p-4 rounded-2xl border border-slate-800">
+            <div class="w-20 h-20 rounded-full overflow-hidden bg-slate-800 shrink-0 flex items-center justify-center border-2 border-purple-500">
+              <img id="studio-avatar-preview" src="" class="w-full h-full object-cover hidden">
+              <span id="studio-avatar-icon" class="text-2xl">🎨</span>
+            </div>
+            <div class="space-y-2 flex-1 text-center sm:text-left">
+              <label class="inline-block bg-purple-600 hover:bg-purple-500 text-white font-semibold px-4 py-2 rounded-xl cursor-pointer transition text-xs">
+                <i class="fa-solid fa-upload mr-1"></i> Cihazdan Profil Fotoğrafı Seç
+                <input type="file" id="avatar-file-input" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)">
+              </label>
+              <button onclick="removeAvatar()" class="ml-2 text-xs text-red-400 hover:underline">Fotoğrafı Kaldır</button>
+              <p class="text-[11px] text-slate-400">Seçtiğiniz fotoğraf otomatik olarak sıkıştırılır ve doğrudan kodun içine gömülür.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-slate-400 mb-1 text-xs">Ad Soyad</label>
+              <input id="inp-name" type="text" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 text-xs">Ünvan / Uzmanlık</label>
+              <input id="inp-title" type="text" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 text-xs">Konum</label>
+              <input id="inp-location" type="text" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 text-xs">Tema Seçimi</label>
+              <select id="inp-theme" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white">
+                <option value="obsidian">Obsidian Gece (Koyu Mor/Siyah)</option>
+                <option value="gallery">Beyaz Sanat Galerisi (Aydınlık)</option>
+                <option value="atelier">Sıcak Atölye (Kahve/Altın)</option>
+                <option value="neon">Cyber Neon (Mavi/Pembe)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-slate-400 mb-1 text-xs">Hakkımda / Biyografi Metni</label>
+            <textarea id="inp-bio" rows="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white"></textarea>
+          </div>
+        </section>
+
+        <!-- 2. BÖLÜM: YENİ SOSYAL MEDYA HESABI EKLE -->
+        <section class="space-y-4">
+          <h3 class="font-bold text-purple-400 uppercase tracking-wider text-xs border-b border-slate-800 pb-2">2. Yeni Sosyal Medya / Bağlantı Ekle</h3>
+          
+          <div class="bg-slate-800/50 border border-slate-700/70 rounded-2xl p-4 space-y-3">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label class="block text-slate-400 mb-1 text-xs">Platform Seçin</label>
+                <select id="new-platform" onchange="autoFillPlatform()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white">
+                  <option value="instagram">Instagram</option>
+                  <option value="whatsapp">WhatsApp</option>
+                  <option value="tiktok">TikTok</option>
+                  <option value="youtube">YouTube</option>
+                  <option value="behance">Behance</option>
+                  <option value="artstation">ArtStation</option>
+                  <option value="pinterest">Pinterest</option>
+                  <option value="twitter">X (Twitter)</option>
+                  <option value="facebook">Facebook</option>
+                  <option value="linkedin">LinkedIn</option>
+                  <option value="github">GitHub</option>
+                  <option value="telegram">Telegram</option>
+                  <option value="spotify">Spotify</option>
+                  <option value="email">E-Posta</option>
+                  <option value="phone">Telefon Ara</option>
+                  <option value="website">Özel Web Sitesi</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1 text-xs">Görünecek Başlık</label>
+                <input id="new-title" type="text" placeholder="Örn: Instagram" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white">
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1 text-xs">Sağdaki Kısa Not / Kullanıcı Adı</label>
+                <input id="new-sub" type="text" placeholder="Örn: @art.huner" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="sm:col-span-2">
+                <label class="block text-slate-400 mb-1 text-xs">Link veya Telefon Numarası (WhatsApp için 905...)</label>
+                <input id="new-url" type="text" placeholder="https://instagram.com/..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white">
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1 text-xs">Kategori</label>
+                <select id="new-cat" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white">
+                  <option value="social">Sosyal Medya</option>
+                  <option value="portfolio">Sanat & Portfolyo</option>
+                  <option value="contact">İletişim</option>
+                </select>
+              </div>
+            </div>
+
+            <button onclick="addNewLink()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-plus"></i> Listeye Hesap Ekle
+            </button>
+          </div>
+
+          <!-- Mevcut Hesapları Sırala / Sil -->
+          <div class="space-y-2">
+            <label class="block text-slate-400 text-xs">Mevcut Hesaplarınız (Sıralayabilir veya Silebilirsiniz):</label>
+            <div id="studio-links-list" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
+          </div>
+        </section>
+
+        <!-- 3. BÖLÜM: ÖNE ÇIKAN VİTRİN KARTI -->
+        <section class="space-y-3">
+          <h3 class="font-bold text-purple-400 uppercase tracking-wider text-xs border-b border-slate-800 pb-2">3. Öne Çıkan Vitrin Kartı</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <input id="inp-feat-title" type="text" placeholder="Başlık" class="bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white">
+            <input id="inp-feat-desc" type="text" placeholder="Kısa Açıklama" class="bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white">
+            <input id="inp-feat-url" type="text" placeholder="Tıklanınca Gideceği Link" class="bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white">
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Modal Alt Kayıt Çubuğu -->
+      <div class="px-6 py-4 bg-slate-800 border-t border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <button onclick="applyChanges()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition">
+          <i class="fa-solid fa-check mr-1"></i> Sitede Uygula & Kaydet
+        </button>
+        <button onclick="exportFullHTML()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold text-xs transition shadow-lg">
+          <i class="fa-solid fa-copy mr-1"></i> GitHub İçin Kalıcı Kodu Kopyala
         </button>
       </div>
     </div>
   </div>
 
+  <!-- QR Kod Modalı -->
+  <div id="qr-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-3xl p-6 max-w-xs w-full text-center space-y-4">
+      <h3 class="font-bold text-base">QR Dijital Kartvizit</h3>
+      <div class="bg-white p-4 rounded-2xl inline-block mx-auto">
+        <img id="qr-image" src="" alt="QR Code" class="w-44 h-44">
+      </div>
+      <p class="text-xs text-slate-400">Telefon kamerasıyla okutarak bu sayfaya anında ulaşabilirsiniz.</p>
+      <button onclick="document.getElementById('qr-modal').classList.add('hidden')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold">Kapat</button>
+    </div>
+  </div>
+
   <script>
-    function saveAndExport() {
-      const name = document.getElementById('input-name').value;
-      const phone = document.getElementById('input-phone').value.replace(/[^0-9]/g, '');
-      const insta = document.getElementById('input-insta').value.replace('@', '');
+    // Platform İkon ve Renk Veritabanı
+    const PLATFORMS = {
+      instagram:  { name: 'Instagram', icon: 'fa-brands fa-instagram', color: 'text-pink-400', hover: 'hover:border-pink-500/60', cat: 'social' },
+      whatsapp:   { name: 'WhatsApp', icon: 'fa-brands fa-whatsapp', color: 'text-emerald-400', hover: 'hover:border-emerald-500/60', cat: 'contact' },
+      tiktok:     { name: 'TikTok', icon: 'fa-brands fa-tiktok', color: 'text-cyan-400', hover: 'hover:border-cyan-400/60', cat: 'social' },
+      youtube:    { name: 'YouTube', icon: 'fa-brands fa-youtube', color: 'text-red-500', hover: 'hover:border-red-500/60', cat: 'social' },
+      behance:    { name: 'Behance', icon: 'fa-brands fa-behance', color: 'text-blue-400', hover: 'hover:border-blue-400/60', cat: 'portfolio' },
+      artstation: { name: 'ArtStation', icon: 'fa-brands fa-artstation', color: 'text-sky-400', hover: 'hover:border-sky-400/60', cat: 'portfolio' },
+      pinterest:  { name: 'Pinterest', icon: 'fa-brands fa-pinterest', color: 'text-red-400', hover: 'hover:border-red-400/60', cat: 'portfolio' },
+      twitter:    { name: 'X / Twitter', icon: 'fa-brands fa-x-twitter', color: 'text-slate-200', hover: 'hover:border-slate-400/60', cat: 'social' },
+      facebook:   { name: 'Facebook', icon: 'fa-brands fa-facebook', color: 'text-blue-500', hover: 'hover:border-blue-500/60', cat: 'social' },
+      linkedin:   { name: 'LinkedIn', icon: 'fa-brands fa-linkedin', color: 'text-sky-500', hover: 'hover:border-sky-500/60', cat: 'contact' },
+      github:     { name: 'GitHub', icon: 'fa-brands fa-github', color: 'text-purple-300', hover: 'hover:border-purple-400/60', cat: 'portfolio' },
+      telegram:   { name: 'Telegram', icon: 'fa-brands fa-telegram', color: 'text-sky-400', hover: 'hover:border-sky-400/60', cat: 'contact' },
+      spotify:    { name: 'Spotify', icon: 'fa-brands fa-spotify', color: 'text-green-400', hover: 'hover:border-green-400/60', cat: 'social' },
+      email:      { name: 'E-Posta', icon: 'fa-solid fa-envelope', color: 'text-amber-400', hover: 'hover:border-amber-400/60', cat: 'contact' },
+      phone:      { name: 'Telefon', icon: 'fa-solid fa-phone', color: 'text-lime-400', hover: 'hover:border-lime-400/60', cat: 'contact' },
+      website:    { name: 'Web Sitesi', icon: 'fa-solid fa-globe', color: 'text-indigo-400', hover: 'hover:border-indigo-400/60', cat: 'portfolio' }
+    };
 
-      if(name) document.getElementById('view-name').innerText = name;
-      if(insta) {
-        document.getElementById('label-instagram').innerText = '@' + insta + ' →';
-        document.getElementById('link-instagram').href = 'https://instagram.com/' + insta;
-      }
-      if(phone) {
-        document.getElementById('link-whatsapp').href = 'https://wa.me/' + phone;
-      }
+    // Başlangıç Verisi (Kalıcı Olarak Gömülü)
+    /*__START_STATE__*/
+    let appState = {
+      name: "Hüseyin Ergün",
+      title: "Görsel Sanatlar & Portfolyo",
+      location: "Cizre, Türkiye",
+      bio: "Karakalem portreler, yağlı boya çalışmaları ve dijital sanat projelerim. Özel sipariş ve iş birlikleri için aşağıdaki kanallardan ulaşabilirsiniz.",
+      avatar: "",
+      theme: "obsidian",
+      featured: {
+        title: "Özel Karakalem & Tablo Siparişi",
+        desc: "Portre çizimi ve eser bilgisi için tıklayın",
+        url: "https://instagram.com/art.huner"
+      },
+      links: [
+        { platform: "instagram", title: "Instagram Sanat Sayfam", sub: "@art.huner", url: "https://instagram.com/art.huner", cat: "social" },
+        { platform: "whatsapp", title: "WhatsApp İletişim & Sipariş", sub: "Mesaj Gönder", url: "https://wa.me/905000000000", cat: "contact" },
+        { platform: "tiktok", title: "TikTok Çizim Videolarım", sub: "Videoları İzle", url: "https://tiktok.com", cat: "social" },
+        { platform: "youtube", title: "YouTube Kanalım", sub: "Abone Ol", url: "https://youtube.com", cat: "social" },
+        { platform: "behance", title: "Behance Dijital Portfolyo", sub: "Eserleri İncele", url: "https://behance.net", cat: "portfolio" },
+        { platform: "github", title: "GitHub Projelerim", sub: "@huseyin73ergun-svg", url: "https://github.com/huseyin73ergun-svg", cat: "portfolio" }
+      ]
+    };
+    /*__END_STATE__*/
 
-      document.getElementById('editModal').classList.add('hidden');
-      alert('Bilgiler ekranda güncellendi! Kalıcı olması için sitenizdeki "Sayfa Kaynağını Kopyala" özelliğini kullanabilir ya da bilgilerinizi bu kutucuktan her zaman değiştirebilirsiniz.');
+    // Tarayıcı Hafızasından Yükle
+    const saved = localStorage.getItem('huseyin_link_studio_v2');
+    if (saved) {
+      try { appState = JSON.parse(saved); } catch(e) {}
     }
+
+    let currentFilter = 'all';
+
+    function renderApp() {
+      // Tema Uygula
+      const body = document.getElementById('app-body');
+      const card = document.getElementById('main-card');
+      if (appState.theme === 'gallery') {
+        body.className = "min-h-screen transition-colors duration-500 flex flex-col items-center justify-center p-4 sm:p-6 bg-stone-100 text-stone-900";
+        card.className = "w-full max-w-lg rounded-[2rem] p-6 sm:p-8 shadow-2xl border border-stone-300 bg-white relative overflow-hidden space-y-6";
+      } else if (appState.theme === 'atelier') {
+        body.className = "min-h-screen transition-colors duration-500 flex flex-col items-center justify-center p-4 sm:p-6 bg-amber-950 text-amber-50";
+        card.className = "w-full max-w-lg rounded-[2rem] p-6 sm:p-8 shadow-2xl border border-amber-800/60 bg-stone-900/90 glass relative overflow-hidden space-y-6";
+      } else if (appState.theme === 'neon') {
+        body.className = "min-h-screen transition-colors duration-500 flex flex-col items-center justify-center p-4 sm:p-6 bg-black text-cyan-50";
+        card.className = "w-full max-w-lg rounded-[2rem] p-6 sm:p-8 shadow-2xl border border-cyan-500/40 bg-slate-950/90 glass relative overflow-hidden space-y-6";
+      } else {
+        body.className = "min-h-screen transition-colors duration-500 flex flex-col items-center justify-center p-4 sm:p-6 bg-slate-950 text-slate-100";
+        card.className = "w-full max-w-lg rounded-[2rem] p-6 sm:p-8 shadow-2xl border border-slate-800 bg-slate-900/90 glass relative overflow-hidden space-y-6";
+      }
+
+      // Metinleri Doldur
+      document.getElementById('ui-name').innerText = appState.name;
+      document.getElementById('ui-footer-name').innerText = appState.name;
+      document.getElementById('ui-title').innerText = appState.title;
+      document.getElementById('ui-location').innerHTML = `<i class="fa-solid fa-location-dot text-pink-400"></i> <span>${appState.location}</span>`;
+      document.getElementById('ui-bio').innerText = appState.bio;
+
+      // Profil Fotoğrafı
+      const avatarImg = document.getElementById('ui-avatar');
+      const avatarPlc = document.getElementById('ui-avatar-Placeholder');
+      if (appState.avatar) {
+        avatarImg.src = appState.avatar;
+        avatarImg.classList.remove('hidden');
+        avatarPlc.classList.add('hidden');
+      } else {
+        avatarImg.classList.add('hidden');
+        avatarPlc.classList.remove('hidden');
+      }
+
+      // Öne Çıkan Kutu
+      document.getElementById('ui-feat-title').innerText = appState.featured.title;
+      document.getElementById('ui-feat-desc').innerText = appState.featured.desc;
+      document.getElementById('ui-feat-url').href = appState.featured.url;
+
+      // Linkleri Listele
+      const container = document.getElementById('links-container');
+      container.innerHTML = '';
+
+      const filtered = appState.links.filter(l => currentFilter === 'all' || l.cat === currentFilter);
+      filtered.forEach((item) => {
+        const p = PLATFORMS[item.platform] || PLATFORMS.website;
+        const isLight = appState.theme === 'gallery';
+        const cardBg = isLight ? 'bg-stone-100 hover:bg-stone-200 border-stone-300' : 'bg-white/5 hover:bg-white/10 border-white/10';
+
+        let finalUrl = item.url.trim();
+        if (item.platform === 'whatsapp' && /^[0-9+]+$/.test(finalUrl.replace(/\s/g, ''))) {
+          finalUrl = 'https://wa.me/' + finalUrl.replace(/[^0-9]/g, '');
+        } else if (item.platform === 'email' && !finalUrl.startsWith('mailto:')) {
+          finalUrl = 'mailto:' + finalUrl;
+        } else if (item.platform === 'phone' && !finalUrl.startsWith('tel:')) {
+          finalUrl = 'tel:' + finalUrl;
+        } else if (!finalUrl.startsWith('http') && !finalUrl.startsWith('mailto:') && !finalUrl.startsWith('tel:')) {
+          finalUrl = 'https://' + finalUrl;
+        }
+
+        container.innerHTML += `
+          <a href="${finalUrl}" target="_blank" rel="noopener noreferrer"
+             class="link-card flex items-center justify-between p-4 rounded-2xl border ${cardBg} ${p.hover} group">
+            <div class="flex items-center gap-3.5 min-w-0">
+              <div class="w-10 h-10 rounded-xl bg-black/20 flex items-center justify-center text-xl ${p.color} shrink-0">
+                <i class="${p.icon}"></i>
+              </div>
+              <div class="text-left truncate">
+                <div class="text-sm font-bold truncate">${item.title}</div>
+                <div class="text-[11px] opacity-60 truncate">${p.name}</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 ml-2">
+              <span class="text-xs opacity-75 font-medium">${item.sub || ''}</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition"></i>
+            </div>
+          </a>
+        `;
+      });
+    }
+
+    function filterLinks(cat) {
+      currentFilter = cat;
+      ['all', 'social', 'portfolio', 'contact'].forEach(c => {
+        const btn = document.getElementById('tab-' + c);
+        if (c === cat) {
+          btn.className = "px-3.5 py-1.5 rounded-full bg-purple-600 text-white transition";
+        } else {
+          btn.className = "px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 transition";
+        }
+      });
+      renderApp();
+    }
+
+    // Stüdyo Aç / Kapat
+    function openStudio() {
+      document.getElementById('inp-name').value = appState.name;
+      document.getElementById('inp-title').value = appState.title;
+      document.getElementById('inp-location').value = appState.location;
+      document.getElementById('inp-bio').value = appState.bio;
+      document.getElementById('inp-theme').value = appState.theme;
+      document.getElementById('inp-feat-title').value = appState.featured.title;
+      document.getElementById('inp-feat-desc').value = appState.featured.desc;
+      document.getElementById('inp-feat-url').value = appState.featured.url;
+
+      updateAvatarPreview();
+      renderStudioLinks();
+      autoFillPlatform();
+      document.getElementById('studio-modal').classList.remove('hidden');
+    }
+
+    function closeStudio() {
+      document.getElementById('studio-modal').classList.add('hidden');
+    }
+
+    function updateAvatarPreview() {
+      const prev = document.getElementById('studio-avatar-preview');
+      const icon = document.getElementById('studio-avatar-icon');
+      if (appState.avatar) {
+        prev.src = appState.avatar;
+        prev.classList.remove('hidden');
+        icon.classList.add('hidden');
+      } else {
+        prev.classList.add('hidden');
+        icon.classList.remove('hidden');
+      }
+    }
+
+    // Cihazdan Profil Fotoğrafı Yükleme ve Küçültme
+    function handleAvatarUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          const size = 260;
+          canvas.width = size;
+          canvas.height = size;
+          const ctx = canvas.getContext('2d');
+          const minDim = Math.min(img.width, img.height);
+          const sx = (img.width - minDim) / 2;
+          const sy = (img.height - minDim) / 2;
+          ctx.drawImage(img, sx, sy, minDim, minDim, 0, 0, size, size);
+          appState.avatar = canvas.toDataURL('image/jpeg', 0.82);
+          updateAvatarPreview();
+          renderApp();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeAvatar() {
+      appState.avatar = "";
+      updateAvatarPreview();
+      renderApp();
+    }
+
+    function autoFillPlatform() {
+      const pKey = document.getElementById('new-platform').value;
+      const p = PLATFORMS[pKey];
+      document.getElementById('new-title').value = p.name;
+      document.getElementById('new-cat').value = p.cat;
+    }
+
+    function addNewLink() {
+      const platform = document.getElementById('new-platform').value;
+      const title = document.getElementById('new-title').value.trim() || PLATFORMS[platform].name;
+      const sub = document.getElementById('new-sub').value.trim();
+      const url = document.getElementById('new-url').value.trim();
+      const cat = document.getElementById('new-cat').value;
+
+      if (!url) {
+        alert('Lütfen bir link veya telefon numarası girin!');
+        return;
+      }
+
+      appState.links.push({ platform, title, sub, url, cat });
+      document.getElementById('new-sub').value = '';
+      document.getElementById('new-url').value = '';
+      renderStudioLinks();
+      renderApp();
+    }
+
+    function removeLink(index) {
+      appState.links.splice(index, 1);
+      renderStudioLinks();
+      renderApp();
+    }
+
+    function moveLink(index, dir) {
+      const target = index + dir;
+      if (target < 0 || target >= appState.links.length) return;
+      const temp = appState.links[index];
+      appState.links[index] = appState.links[target];
+      appState.links[target] = temp;
+      renderStudioLinks();
+      renderApp();
+    }
+
+    function renderStudioLinks() {
+      const list = document.getElementById('studio-links-list');
+      list.innerHTML = '';
+      appState.links.forEach((item, idx) => {
+        const p = PLATFORMS[item.platform] || PLATFORMS.website;
+        list.innerHTML += `
+          <div class="flex items-center justify-between bg-slate-800 border border-slate-700 rounded-xl p-2.5">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <i class="${p.icon} ${p.color} text-base w-5 text-center"></i>
+              <div class="truncate">
+                <div class="font-bold text-xs text-white truncate">${item.title}</div>
+                <div class="text-[10px] text-slate-400 truncate">${item.url}</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 shrink-0 ml-2">
+              <button onclick="moveLink(${idx}, -1)" class="w-7 h-7 rounded-lg bg-slate-700 hover:bg-slate-600 text-xs" title="Yukarı Taşı">&uarr;</button>
+              <button onclick="moveLink(${idx}, 1)" class="w-7 h-7 rounded-lg bg-slate-700 hover:bg-slate-600 text-xs" title="Aşağı Taşı">&darr;</button>
+              <button onclick="removeLink(${idx})" class="w-7 h-7 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white text-xs" title="Sil">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function applyChanges() {
+      appState.name = document.getElementById('inp-name').value.trim() || "Hüseyin Ergün";
+      appState.title = document.getElementById('inp-title').value.trim();
+      appState.location = document.getElementById('inp-location').value.trim();
+      appState.bio = document.getElementById('inp-bio').value.trim();
+      appState.theme = document.getElementById('inp-theme').value;
+      appState.featured.title = document.getElementById('inp-feat-title').value.trim();
+      appState.featured.desc = document.getElementById('inp-feat-desc').value.trim();
+      appState.featured.url = document.getElementById('inp-feat-url').value.trim();
+
+      localStorage.setItem('huseyin_link_studio_v2', JSON.stringify(appState));
+      renderApp();
+      closeStudio();
+    }
+
+    // Yaptığınız Tüm Değişiklikleri (Fotoğraf Dahil) Tek Tıkla GitHub Koduna Dönüştürür
+    function exportFullHTML() {
+      applyChanges();
+      let rawHtml = document.documentElement.outerHTML;
+      const stateBlock = `/*__START_STATE__*/\n    let appState = ${JSON.stringify(appState, null, 6)};\n    /*__END_STATE__*/`;
+      rawHtml = rawHtml.replace(/\/\*__START_STATE__\*\/[\s\S]*?\/\*__END_STATE__\*\//, stateBlock);
+      const finalCode = "<!DOCTYPE html>\n" + rawHtml;
+
+      navigator.clipboard.writeText(finalCode).then(() => {
+        alert("✅ Profesyonel kodunuz (profil fotoğrafınız ve eklediğiniz tüm hesaplarla birlikte) panoya kopyalandı!\n\nŞimdi GitHub'daki index.html dosyanızı açıp içine yapıştırarak herkes için kalıcı hale getirebilirsiniz.");
+      });
+    }
+
+    function openQR() {
+      const url = encodeURIComponent(window.location.href);
+      document.getElementById('qr-image').src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${url}`;
+      document.getElementById('qr-modal').classList.remove('hidden');
+    }
+
+    function sharePage() {
+      if (navigator.share) {
+        navigator.share({ title: appState.name, url: window.location.href });
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert("Sayfa linki kopyalandı: " + window.location.href);
+      }
+    }
+
+    renderApp();
   </script>
 </body>
 </html>
