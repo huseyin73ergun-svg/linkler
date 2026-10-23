@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hüseyin Ergün | Bağlantılar</title>
+  <title>Sosyal Medya & Portfolyo</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4">
+
+  <!-- Ana Kart -->
   <div class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 text-center shadow-2xl">
     
     <div class="space-y-3">
@@ -15,22 +17,32 @@
         🎨
       </div>
       <div>
-        <h1 class="text-xl font-bold">Hüseyin Ergün</h1>
-        <p class="text-sm text-purple-400 font-medium">Görsel Sanatlar & Portfolyo</p>
+        <h1 id="view-name" class="text-xl font-bold">Hüseyin Ergün</h1>
+        <p id="view-title" class="text-sm text-purple-400 font-medium">Görsel Sanatlar & Portfolyo</p>
       </div>
-      <p class="text-xs text-slate-400 max-w-xs mx-auto">
-        Karakalem çalışmaları, yağlı boya tablolar ve sosyal medya hesaplarım.
+      <p id="view-bio" class="text-xs text-slate-400 max-w-xs mx-auto">
+        Karakalem çalışmaları, yağlı boya tablolar ve güncel projelerim.
       </p>
     </div>
 
+    <!-- Linkler -->
     <div class="space-y-3 text-left">
-      <a href="https://instagram.com/art.huner" target="_blank" rel="noopener noreferrer"
+      <a id="link-instagram" href="https://instagram.com/art.huner" target="_blank" rel="noopener noreferrer"
          class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">
         <div class="flex items-center gap-3">
           <i class="fa-brands fa-instagram text-xl text-pink-400"></i>
           <span class="text-sm font-semibold">Instagram</span>
         </div>
-        <span class="text-xs text-slate-400">@art.huner &rarr;</span>
+        <span id="label-instagram" class="text-xs text-slate-400">@art.huner &rarr;</span>
+      </a>
+
+      <a id="link-whatsapp" href="https://wa.me/905000000000" target="_blank" rel="noopener noreferrer"
+         class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">
+        <div class="flex items-center gap-3">
+          <i class="fa-brands fa-whatsapp text-xl text-emerald-400"></i>
+          <span class="text-sm font-semibold">WhatsApp</span>
+        </div>
+        <span class="text-xs text-slate-400">Mesaj Gönder &rarr;</span>
       </a>
 
       <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"
@@ -50,29 +62,70 @@
         </div>
         <span class="text-xs text-slate-400">Kanal &rarr;</span>
       </a>
-
-      <a href="https://behance.net" target="_blank" rel="noopener noreferrer"
-         class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">
-        <div class="flex items-center gap-3">
-          <i class="fa-brands fa-behance text-xl text-blue-400"></i>
-          <span class="text-sm font-semibold">Behance</span>
-        </div>
-        <span class="text-xs text-slate-400">Portfolyo &rarr;</span>
-      </a>
-
-      <a href="https://wa.me/" target="_blank" rel="noopener noreferrer"
-         class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition">
-        <div class="flex items-center gap-3">
-          <i class="fa-brands fa-whatsapp text-xl text-emerald-400"></i>
-          <span class="text-sm font-semibold">WhatsApp</span>
-        </div>
-        <span class="text-xs text-slate-400">Mesaj &rarr;</span>
-      </a>
     </div>
 
     <div class="pt-2 text-xs text-slate-500 text-center">
       © 2026 Tüm Hakları Saklıdır.
     </div>
   </div>
+
+  <!-- Sağ Alttaki Düzenleme Butonu -->
+  <button onclick="document.getElementById('editModal').classList.toggle('hidden')" 
+          class="fixed bottom-4 right-4 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-3 py-2 rounded-full shadow-lg border border-purple-400/30 flex items-center gap-1.5 transition">
+    <i class="fa-solid fa-pen"></i> Ekrandan Düzenle
+  </button>
+
+  <!-- Düzenleme Penceresi (Modal) -->
+  <div id="editModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+    <div class="bg-slate-900 border border-slate-700 w-full max-w-sm rounded-2xl p-5 space-y-4 shadow-2xl text-left">
+      <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+        <h3 class="font-bold text-sm text-purple-300">Sayfa Bilgilerini Güncelle</h3>
+        <button onclick="document.getElementById('editModal').classList.add('hidden')" class="text-slate-400 hover:text-white">&times;</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-400 mb-1">Ad Soyad</label>
+          <input id="input-name" type="text" value="Hüseyin Ergün" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white">
+        </div>
+
+        <div>
+          <label class="block text-slate-400 mb-1">WhatsApp Numarası (Başında 90 ile)</label>
+          <input id="input-phone" type="text" placeholder="905321234567" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white">
+        </div>
+
+        <div>
+          <label class="block text-slate-400 mb-1">Instagram Kullanıcı Adı</label>
+          <input id="input-insta" type="text" value="art.huner" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white">
+        </div>
+      </div>
+
+      <div class="pt-2 flex gap-2">
+        <button onclick="saveAndExport()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 rounded-lg text-xs transition">
+          Güncelle & Kodu Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function saveAndExport() {
+      const name = document.getElementById('input-name').value;
+      const phone = document.getElementById('input-phone').value.replace(/[^0-9]/g, '');
+      const insta = document.getElementById('input-insta').value.replace('@', '');
+
+      if(name) document.getElementById('view-name').innerText = name;
+      if(insta) {
+        document.getElementById('label-instagram').innerText = '@' + insta + ' →';
+        document.getElementById('link-instagram').href = 'https://instagram.com/' + insta;
+      }
+      if(phone) {
+        document.getElementById('link-whatsapp').href = 'https://wa.me/' + phone;
+      }
+
+      document.getElementById('editModal').classList.add('hidden');
+      alert('Bilgiler ekranda güncellendi! Kalıcı olması için sitenizdeki "Sayfa Kaynağını Kopyala" özelliğini kullanabilir ya da bilgilerinizi bu kutucuktan her zaman değiştirebilirsiniz.');
+    }
+  </script>
 </body>
 </html>
